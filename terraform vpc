@@ -1,0 +1,30 @@
+//main//
+resource "aws_vpc" "myVPC" {
+  cidr_block                       = var.cidr
+  enable_dns_hostnames             = var.enable_dns_hostnames
+  enable_dns_support               = var.enable_dns_support
+  tags = {
+    Name = var.vpc_name
+  }
+}
+
+
+
+//output//
+output "vpc_id" {
+  value = aws_vpc.myVPC.id
+}
+
+
+
+//provider//
+ provider "aws" {
+   region = "us-east-1"
+ }
+
+
+
+//data//
+data "aws_availability_zones" "available_1" {
+  state = "available"
+}
