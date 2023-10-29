@@ -1,0 +1,20 @@
+
+//install//
+---
+- hosts: webservers
+  become: true
+  tasks:
+   - name: Install Package git
+     yum: name=git state=present
+     service: name=httpd state=started
+
+
+//create file//
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Create a file
+    file: path=/home/batch-13.txt state=touch
+
+
+
