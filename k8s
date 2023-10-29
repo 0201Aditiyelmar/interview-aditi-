@@ -1,0 +1,69 @@
+//pod//
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+      app: myapp
+      type: fornt-end
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx  
+
+
+
+//replicaset//
+apiVersion: apps/v1
+kind: Replicaset
+metadata:
+   name: forntend
+   labels:
+     app: my-app
+     tier: forntend
+spec:
+   replicas: 3
+   selector
+     matchLabels:
+       tier: forntend
+   template: 
+     meatadata:
+       labels:
+         tier: forntend
+      spec:
+         containers:
+           - name: nginx container
+             image: nginx      
+
+
+
+
+//deployment//
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: myapp-deployment
+   labels:
+     app: my-app
+     tier: forntend
+spec:
+   template:
+     metadata:
+       name: myapp-pod
+       labels:
+          app: myapp
+          type: fornt-end
+      spec:
+        containers:
+        - name: nginx-container
+          image: nginx:latest
+replicas: 3
+selector:
+  matchLabels:
+    type: fornt-end
+
+
+
+
+
+
