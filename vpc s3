@@ -1,0 +1,28 @@
+//main//
+resource "aws_s3_bucket" "my-s3-bucket" {
+  bucket_prefix = var.bucket_prefix
+  acl = var.acl
+  
+   versioning {
+    enabled = var.versioning
+  }
+  
+  tags = var.tags
+}
+
+
+//backend//
+terraform {
+  backend "s3" {
+    bucket = "mydev-tf-state-bucket-project-terraform-batch-20"
+    key = "main"
+    region = "us-east-1"
+    dynamodb_table = "my-dynamodb-table"
+  }
+
+
+
+
+
+
+  
